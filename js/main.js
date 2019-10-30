@@ -18,7 +18,7 @@ var randomNumsCollection = [],
     numsEnteredCollection = [];
 
 // 16 unique random numbers between 1 and 100 are generated
-while (randomNumsCollection.length < 17)
+while (randomNumsCollection.length < 16)
 {
     randomInt = getRandomInt(1, 100);
     if (!randomNumsCollection.includes(randomInt)) randomNumsCollection.push(randomInt);
