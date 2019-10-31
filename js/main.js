@@ -24,13 +24,12 @@ while (randomNumsCollection.length < 16)
     if (!randomNumsCollection.includes(randomInt)) randomNumsCollection.push(randomInt);
 }
 /* the next loop will stop when the user enters 1 of the 16 between 1 and 100 random numbers or when
-the user has entered all the remaining 100 - 16 between 1 and 100 numbers */
-do
+the user has entered all the remaining 100 - 16 between 1 and 100 numbers. */
+while (!randomNumsCollection.includes(num) && 100 - 16 - numsEntered !== 0)
 {
     num = parseInt(prompt("Enter an integer number between 1 and 100"));
     // the user can't enter the same number more than once
-    while (numsEnteredCollection.includes(num))
-    {
+    while (numsEnteredCollection.includes(num)) {
         num = parseInt(prompt("You can't enter a number you've already entered! Enter another integer number between 1 amd 100"));
     }
     /* collection where inserted numbers are stored (used to check if a number has already been
@@ -38,7 +37,6 @@ do
     numsEnteredCollection.push(num);
     ++numsEntered;
 }
-while (!randomNumsCollection.includes(num) && 100 - 16 - numsEntered !== 0)
 /* the appropriate strings are inserted in the document (the join method is used to add ", " between
 each item of the collections) */
 document.querySelector(".last-num-msg").textContent =
