@@ -12,30 +12,31 @@ l’utente non può inserire due volte lo stesso numero, ma sempre numeri divers
 */
 
 var randomNumsCollection = [],
-    randomInt,
-    num,
-    numsEntered = 0,
+    randomNum,
+    numEntered,
+    numsEnteredCounter = 0,
     numsEnteredCollection = [];
-
 // 16 unique random numbers between 1 and 100 are generated
 while (randomNumsCollection.length < 16)
 {
-    randomInt = getRandomInt(1, 100);
-    if (!randomNumsCollection.includes(randomInt)) randomNumsCollection.push(randomInt);
+    randomNum = getRandomInt(1, 100);
+    if (!randomNumsCollection.includes(randomNum)) randomNumsCollection.push(randomNum);
 }
 /* the next loop will stop when the user enters 1 of the 16 between 1 and 100 random numbers or when
 the user has entered all the remaining 100 - 16 between 1 and 100 numbers. */
-while (!randomNumsCollection.includes(num) && 100 - 16 - numsEntered !== 0)
+while (!randomNumsCollection.includes(numEntered) && 100 - 16 - numsEnteredCounter !== 0)
 {
-    num = parseInt(prompt("Enter an integer number between 1 and 100"));
+    numEntered = parseInt(prompt("Enter an integer number between 1 and 100"));
     // the user can't enter the same number more than once
-    while (numsEnteredCollection.includes(num)) {
-        num = parseInt(prompt("You can't enter a number you've already entered! Enter another integer number between 1 amd 100"));
+    if (numsEnteredCollection.includes(numEntered))
+    {
+        alert("You can't enter a number you've already entered!");
+        continue;
     }
     /* collection where inserted numbers are stored (used to check if a number has already been
     entered) */
-    numsEnteredCollection.push(num);
-    ++numsEntered;
+    numsEnteredCollection.push(numEntered);
+    ++numsEnteredCounter;
 }
 /* the appropriate strings are inserted in the document (the join method is used to add ", " between
 each item of the collections) */
@@ -48,7 +49,7 @@ console.log(numsEnteredCollection);
 document.querySelector(".entered-nums-msg").textContent = 
     "- You entered these numbers: " + numsEnteredCollection.join(", ");
 document.querySelector(".allowed-nums-msg").textContent = 
-    "- You picked the right number " + --numsEntered + " times!";
+    "- You picked the right number " + --numsEnteredCounter + " times!";
 
 /**
  * Returns a random integer between min (inclusive) and max (inclusive).
